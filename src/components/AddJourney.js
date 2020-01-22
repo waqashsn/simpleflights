@@ -4,7 +4,7 @@ import {DatePicker, Button} from 'antd';
 import moment from 'moment-timezone';
 import Fuse from 'fuse.js';
 // import * as dataset from '../../node_modules/airport-codes/airports.json';
-var dataset = require('../../node_modules/airport-codes/airports.json');
+// var dataset = require('../../node_modules/airport-codes/airports.json');
 
 // var fuse_options = {
 //     caseSensitive: true,
@@ -17,6 +17,8 @@ var dataset = require('../../node_modules/airport-codes/airports.json');
 // var fuse_dataset = new Fuse(dataset, fuse_options);
 
 class AddJourney extends React.Component{
+    dataset = require('../../node_modules/airport-codes/airports.json');
+
     fuse_options = {
         caseSensitive: true,
         threshold: 0.0,
@@ -25,7 +27,7 @@ class AddJourney extends React.Component{
         // id: 'iata'
     }
 
-    fuse_dataset = new Fuse(dataset, this.fuse_options);
+    fuse_dataset = new Fuse(this.dataset, this.fuse_options);
     
     state = {
         departure_date: null,
