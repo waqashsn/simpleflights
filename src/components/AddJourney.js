@@ -6,19 +6,26 @@ import Fuse from 'fuse.js';
 // import * as dataset from '../../node_modules/airport-codes/airports.json';
 var dataset = require('../../node_modules/airport-codes/airports.json');
 
-var fuse_options = {
-    caseSensitive: true,
-    threshold: 0.0,
-    keys: ['iata'],
-    // keys: ['id', 'name', "city", "country", "iata", "icao", "latitude", "longitude", "altitude", "timezone", "dst", "tz"],
-    // id: 'iata'
-}
+// var fuse_options = {
+//     caseSensitive: true,
+//     threshold: 0.0,
+//     keys: ['iata'],
+//     // keys: ['id', 'name', "city", "country", "iata", "icao", "latitude", "longitude", "altitude", "timezone", "dst", "tz"],
+//     // id: 'iata'
+// }
 
-var fuse_dataset = new Fuse(dataset, fuse_options);
+// var fuse_dataset = new Fuse(dataset, fuse_options);
 
 class AddJourney extends React.Component{
+    fuse_options = {
+        caseSensitive: true,
+        threshold: 0.0,
+        keys: ['iata'],
+        // keys: ['id', 'name', "city", "country", "iata", "icao", "latitude", "longitude", "altitude", "timezone", "dst", "tz"],
+        // id: 'iata'
+    }
 
-    
+    fuse_dataset = new Fuse(dataset, this.fuse_options);
     
     state = {
         departure_date: null,
@@ -46,11 +53,11 @@ class AddJourney extends React.Component{
 
     handleSubmit = (e) => {
         e.preventDefault();
-        console.log(dataset);
+        // console.log(dataset);
         const entered_departure_airport_code = document.getElementById("input_departure_airport_code").value;
         console.log(entered_departure_airport_code);
-        fuse_dataset.search(entered_departure_airport_code);
-        console.log(`Timezone of your entered airport ($entered_departure_airport_code) is: `, fuse_dataset.search(entered_departure_airport_code)[0].tz);
+        this.fuse_dataset.search(entered_departure_airport_code);
+        console.log(`Timezone of your entered airport ($entered_departure_airport_code) is: `, this.fuse_dataset.search(entered_departure_airport_code)[0].tz);
 
 
         this.props.createJourney(this.state);
