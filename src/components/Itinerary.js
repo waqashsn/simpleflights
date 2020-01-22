@@ -15,7 +15,7 @@ function Itinerary(props){
 
         return(
             <div key={journey.journey_id}>
-                <p>Depart on: {departure_dateTime.toLocaleString()}, reach on: {arrival_dateTime.toLocaleString()}.</p>
+                <p>Depart on: {departure_dateTime.format()}, reach on: {arrival_dateTime.toLocaleString()}.</p>
                 <p>Flight duration is {flight_duration.asHours()}.</p>
                 {has_previous_flights ? "Rest for " + rest_duration: ""}
 
