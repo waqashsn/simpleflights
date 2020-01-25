@@ -27,7 +27,7 @@ class App extends React.Component {
   render(){
     return(
       <div>
-        <div>This is the main app component.</div>
+        <div className="page_title">SimpleFlights</div>
         <AddJourney createJourney={this.createJourney} />
         <Itinerary journey_list={this.state.journey} />
       </div>
