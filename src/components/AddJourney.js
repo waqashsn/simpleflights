@@ -49,6 +49,7 @@ class AddJourney extends React.Component{
 
     fuse_dataset = new Fuse(this.dataset, this.fuse_options);
 
+    //handle the change in departure date field
     handleDepartureChange = (value) => {
         console.log("Default Departure date & time: ", value);
         console.log("UTC departure date & time: ", value.toLocaleString());
@@ -61,6 +62,7 @@ class AddJourney extends React.Component{
         })
     }
 
+    //handle entry in departure airport code field
     handleDepartureAirportCode = (e) => {
         //if airport code entered has three letters, get airport data...
         if (e.target.value !== "" && e.target.value.length == 3) {
@@ -98,6 +100,7 @@ class AddJourney extends React.Component{
         }
     }
 
+    // handle entry in destination airport code field 
     handleDestinationAirportCode = (e) => {
         if (e.target.value !== "" && e.target.value.length == 3) {
             const get_destination_data = new Promise((resolve, reject) => {
@@ -126,11 +129,12 @@ class AddJourney extends React.Component{
         }
     }
 
-    
+    // capitalize entered value in airport codes entry fields
     handleAirportInputCapitalize = (e) =>{
         e.target.value = e.target.value.toUpperCase();
     }
 
+    // handle change in arrival date field
     handleArrivalChange = (value) => {
         console.log("Arrival date & time:", value);
         this.setState({
@@ -138,6 +142,7 @@ class AddJourney extends React.Component{
         })
     }
 
+    // handle submission of form
     handleSubmit = (e) => {
         e.preventDefault();
         // console.log(dataset);
