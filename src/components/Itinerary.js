@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import { Timeline, Icon } from 'antd';
 
 function Itinerary(props){
     const journey_list = props.journey_list;
@@ -14,18 +15,26 @@ function Itinerary(props){
         const rest_duration = has_previous_flights ? moment.duration(departure_dateTime.diff(previous_journey_arrival)).asHours() : null;
 
         return(
-            <div key={journey.journey_id}>
-                <p>Depart on: {departure_dateTime.format()}, reach on: {arrival_dateTime.toLocaleString()}.</p>
-                <p>Flight duration is {flight_duration.asHours()}.</p>
-                {has_previous_flights ? "Rest for " + rest_duration: ""}
-
+            <div>
+                { has_previous_flights ? <Timeline.Item>{rest_duration + " hours rest"}</Timeline.Item> : ""}
+                <Timeline.Item dot={<Icon type="rocket" theme="filled" />}>
+                    {flight_duration.asHours()} hours flight from {journey.departure_city} to {journey.arrival_city}
+                </Timeline.Item>
             </div>
+            // <div key={journey.journey_id}>
+            //     <p>Depart on: {departure_dateTime.format()}, reach on: {arrival_dateTime.toLocaleString()}.</p>
+            //     <p>Flight duration is {flight_duration.asHours()}.</p>
+            //     {has_previous_flights ? "Rest for " + rest_duration: ""}
+
+            // </div>
         )
     })
 
     return(
         <div>
-            {itinerary}
+            <Timeline>
+                {itinerary}
+            </Timeline>
         </div>
     )
 }
