@@ -1,3 +1,6 @@
+# SimpleFlights
+A single-page web app that calculates flight durations and layover durations based on entered itinerary. Timezones are converted automatically from departure location to destination location to calculate flight and layover durations.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
